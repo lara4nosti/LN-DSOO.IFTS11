@@ -1,5 +1,15 @@
-# main.py
-from database import Database
+'''
+Interfaz
+
+Conección con las Opciones
+'''
+from Funciones.opciones import BaseDeDatos
+db = BaseDeDatos()
+
+# Limpiar pantalla
+import os
+os.system('cls')
+
 import json
 
 def mostrar_menu():
@@ -13,26 +23,30 @@ def mostrar_menu():
     return input("Seleccione una opción: ")
 
 def main():
-    db = Database("MiBaseDeDatos")
-
     while True:
         opcion = mostrar_menu()
         
         if opcion == "1":
+            os.system('cls')
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
-            db.create_collection(nombre_coleccion)
+            db.create_coleccion(nombre_coleccion)
+            #db.crear_coleccion(nombre_coleccion)
             print(f"Colección '{nombre_coleccion}' creada.")
         
         elif opcion == "2":
+            os.system('cls')
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
             collection = db.get_collection(nombre_coleccion)
+            #collection = db.obtener_coleccion(nombre_coleccion)
             ruta_csv = input("Ingrese la ruta del archivo CSV: ")
             collection.import_csv(nombre_coleccion, ruta_csv)
         
         elif opcion == "3":
+            os.system('cls')
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
-            doc_id = input("Ingrese el ID del documento: ")
+            doc_id = int(input("Ingrese el ID del documento: "))
             coleccion = db.get_collection(nombre_coleccion)
+            #collection = db.obtener_coleccion(nombre_coleccion)
             if coleccion:
                 documento = coleccion.get_document(doc_id)
                 if documento:
@@ -44,6 +58,7 @@ def main():
                 print(f"Colección '{nombre_coleccion}' no encontrada.")
         
         elif opcion == "4":
+            os.system('cls')
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
             doc_id = input("Ingrese el ID del documento a eliminar: ")
             coleccion = db.get_collection(nombre_coleccion)
@@ -51,6 +66,7 @@ def main():
                 coleccion.delete_document(doc_id)
         
         elif opcion == "5":
+            os.system('cls')
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
             coleccion = db.get_collection(nombre_coleccion)
             if coleccion:
@@ -64,11 +80,16 @@ def main():
                     print("No hay documentos en la colección.")
         
         elif opcion == "6":
+            os.system('cls')
             print("Saliendo del programa.")
             break
         
         else:
+            os.system('cls')
             print("Opción no válida. Intente nuevamente.")
+            input("\n-Presione Enter para volver al menú-")
+            os.system('cls')
+            main()
 
 if __name__ == "__main__":
     main()
