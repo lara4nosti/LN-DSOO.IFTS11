@@ -13,7 +13,7 @@ class BaseDeDatos:
     def crear_coleccion(self, nombre_coleccion):
         if nombre_coleccion in self.colecciones:
             print(f"La colección '{nombre_coleccion}' ya existe.")
-        elif nombre_coleccion is None:
+        elif nombre_coleccion.strip() is "":
             print(f"El nombre de la colección es vacío.")
         else:
             self.colecciones[nombre_coleccion] = Coleccion(nombre_coleccion)
