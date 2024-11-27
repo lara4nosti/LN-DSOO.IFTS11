@@ -1,10 +1,8 @@
-# Limpiar pantalla
-import os
-os.system('cls')
+'''
+CSV
 
-schema = "Nombre,Apellido,Edad,DNI"
-row = "Lara,Nosti,21,45.236.681"
-
+Lector del archivo
+'''
 class SchemaError(Exception):
     def __init__(self, message):
         self.message = message
@@ -30,11 +28,9 @@ class Archivo(object):
             return d
         else:
             raise SchemaError("Los campos de la fila no concuerdan con el schema")
-    
-    # Otra cosa
-    def PrintTmp(self):
-        print(self.tmp)
 
+#Pruebas para un archivo de las notificaciones de error
+'''
 try:
     o = Archivo(2)
     d = o.convert(row)
@@ -43,14 +39,4 @@ except AttributeError:
     print("Parámetros incorrectos")
 except SchemaError as e:
     print("Fallo algo en el schema:", e)
-
-
-o = Archivo(schema)
-print(o.schema)
-
-d = o.convert(row)
-print(d["DNI"])
-
-# Otra cosa
-o.tmp = "Jose"
-o.PrintTmp()
+'''
