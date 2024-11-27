@@ -3,15 +3,10 @@ CSV
 
 Lector del archivo
 '''
-class SchemaError(Exception):
-    def __init__(self, message):
-        self.message = message
-        super().__init__(message)
-
 class Archivo(object):
     def __init__(self, schemaStr, separator=","):
-        if len(schema) == 0:
-            raise SchemaError("El schema está vacío")
+        if schemaStr is None:
+            return print("El archivo está vacío.")
         self.schema = schemaStr.split(separator)
         self.separator = separator
     
@@ -27,10 +22,15 @@ class Archivo(object):
                 i += 1
             return d
         else:
-            raise SchemaError("Los campos de la fila no concuerdan con el schema")
+            return print("Los campos de la fila no concuerdan.")
 
 #Pruebas para un archivo de las notificaciones de error
 '''
+class SchemaError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(message)
+
 try:
     o = Archivo(2)
     d = o.convert(row)

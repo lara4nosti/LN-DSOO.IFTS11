@@ -23,7 +23,7 @@ class Coleccion:
     
     #2. Importar CSV a colección
     def importar_csv(self, ruta):
-        if not os.path.exists(ruta):
+        if not ruta:
             print(f"El archivo {ruta} no existe.")
             return
         try:
