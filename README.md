@@ -1,12 +1,12 @@
 <div align="center">
-  <h1 style="color:#FFB200">
+  <h1>
     Trabajo Integrador Final
   </h1>
 </div>
 
 **Proyecto de la materia Desarrollo de Sistemas Orientado a Objetos**
 
-Este archivo explica sus [_componentes_](##componentes) y el [_modo de uso_](##modo-de-uso).
+Este archivo explica sus _componentes_ y el _modo de uso_.
 
 ## Componentes
 
@@ -53,6 +53,4 @@ En la segunda opción se puede elegir los datos de la _Carpeta ~ Registros_, las
 ./Registros/prueba_corta.csv
 ./Registros/prueba_larga.csv
 ```
-Para cualquier otro archivo que se encuentre fuera de la carpeta hay que poner la ruta. completa
-* Item 1
-* Item 2
+Para cualquier otro archivo que se encuentre fuera de la carpeta hay que poner la ruta.
