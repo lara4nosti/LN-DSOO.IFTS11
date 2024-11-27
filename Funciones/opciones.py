@@ -1,13 +1,9 @@
 '''
 Opciones
 
-Conección con las clases
+Conección con el CSV
 '''
 from .csv import Archivo
-
-# Limpiar pantalla
-import os
-os.system('cls')
 
 class Documento:
     #Genera el id incremental
@@ -18,7 +14,7 @@ class Documento:
         self.contenido = contenido if contenido is not None else {}
     
     def __str__(self):
-        return f"Contenido: {self.contenido}"
+        return f"{self.id} | {self.contenido}"
 
 class Coleccion:
     def __init__(self, nombre):
@@ -52,11 +48,12 @@ class Coleccion:
     def eliminar_doc(self, id_docu):
         if id_docu in self.documentos:
             del self.documentos[id_docu]
+        else:
+            print("Documento no encontrado.")
     
     #5. Listar todos los documentos en colección
-    def __str__(self):
-        return Documento.str()
-        #return f"Colección {self.nombre}, con: {len(self.documentos)} documentos"
+    def listar_doc(self):
+        return list(self.documentos.values())
 
 class BaseDeDatos:
     def __init__(self):
