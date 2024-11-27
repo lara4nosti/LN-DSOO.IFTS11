@@ -5,16 +5,23 @@ Conección con el CSV
 '''
 from .csv import Archivo
 
-class Documento:
-    #Genera el id incremental
-    autoinc = 0
-    def __init__(self, contenido=None):
-        self.id = Documento.autoinc
-        Documento.autoinc += 1
-        self.contenido = contenido if contenido is not None else {}
+class BaseDeDatos:
+    def __init__(self):
+        self.colecciones = {}
     
-    def __str__(self):
-        return f"{self.id} | {self.contenido}"
+    #1. Crear colección
+    def crear_coleccion(self, nombre_coleccion):
+        if nombre_coleccion in self.colecciones:
+            print(f"La colección '{nombre_coleccion}' ya existe.")
+        elif nombre_coleccion is None:
+            print(f"El nombre de la colección es vacío.")
+        else:
+            self.colecciones[nombre_coleccion] = Coleccion(nombre_coleccion)
+            print(f"Colección '{nombre_coleccion}' creada con éxito.")
+    
+    #Acción principal de la que deriva el funcionamiento las otras 4
+    def obtener_coleccion(self, nombre_coleccion):
+        return self.colecciones[nombre_coleccion]
 
 class Coleccion:
     def __init__(self, nombre):
@@ -55,18 +62,13 @@ class Coleccion:
     def listar_doc(self):
         return list(self.documentos.values())
 
-class BaseDeDatos:
-    def __init__(self):
-        self.colecciones = {}
+class Documento:
+    #Genera el id incremental
+    autoinc = 0
+    def __init__(self, contenido=None):
+        self.id = Documento.autoinc
+        Documento.autoinc += 1
+        self.contenido = contenido if contenido is not None else {}
     
-    #1. Crear colección
-    def crear_coleccion(self, nombre_coleccion):
-        if nombre_coleccion in self.colecciones:
-            print(f"La colección '{nombre_coleccion}' ya existe.")
-        else:
-            self.colecciones[nombre_coleccion] = Coleccion(nombre_coleccion)
-            print(f"Colección '{nombre_coleccion}' creada con éxito.")
-    
-    #Acción principal de la que deriva el funcionamiento las otras 4
-    def obtener_coleccion(self, nombre_coleccion):
-        return self.colecciones[nombre_coleccion]
+    def __str__(self):
+        return f"{self.id} | {self.contenido}"
